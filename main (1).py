@@ -1,46 +1,79 @@
-#3.2 Implement a function called sort_students that takes a list of student objects as input and sorts the list based on their CGPA (Cumulative Grade Point Average) in descending order. Each student object has the following attributes: name (string), roll_number (string), and cgpa (float). Test the function with different input lists of students.
+class BankAccount:
 
-class Student:
+    def __init__(self, account_number, account_holder_name, initial_balance=0.0):
 
-    def __init__(self, name, roll_number, cgpa):
+        self.__account_number = account_number
 
-        self.name = name
+        self.__account_holder_name = account_holder_name
 
-        self.roll_number = roll_number
-
-        self.cgpa = cgpa
+        self.__account_balance = initial_balance
 
 
 
-def sort_students(student_list):
+    def deposit(self, amount):
 
-    sorted_students = sorted(student_list, key=lambda student: student.cgpa, reverse=True)
+        if amount > 0:
 
-    return sorted_students
+            self.__account_balance += amount
 
+            print(f"Deposited ${amount:.2f} into account {self.__account_number}")
 
+        else:
 
-
-student1 = Student("Divya", "S123", 3.7)
-
-student2 = Student("Prithika", "S124", 3.9)
-
-student3 = Student("Malusri", "S125", 3.5)
-
-student4 = Student("Nivetha", "S126", 3.8)
+            print("Invalid deposit amount. Please deposit a positive amount.")
 
 
 
-students = [student1, student2, student3, student4]
+    def withdraw(self, amount):
+
+        if amount > 0:
+
+            if self.__account_balance >= amount:
+
+                self.__account_balance -= amount
+
+                print(f"Withdrew ${amount:.2f} from account {self.__account_number}")
+
+            else:
+
+                print("Insufficient balance. Cannot withdraw.")
+
+        else:
+
+            print("Invalid withdrawal amount. Please withdraw a positive amount.")
 
 
 
-sorted_students = sort_students(students)
+    def display_balance(self):
+
+        print(f"Account {self.__account_number} balance: ${self.__account_balance:.2f}")
 
 
 
-# Print the sorted list of students by CGPA in descending order
 
-for student in sorted_students:
 
-    print(f"Name: {student.name}, Roll Number: {student.roll_number}, CGPA: {student.cgpa}")
+# Testing the BankAccount class
+
+if __name__ == "__main__":
+
+    # Create a BankAccount instance
+
+    account1 = BankAccount("123456", "John Doe", 1000.0)
+
+
+
+    # Deposit money
+
+    account1.deposit(500.0)
+
+
+
+    # Withdraw money
+
+    account1.withdraw(200.0)
+
+
+
+    # Display balance
+
+    account1.display_balance()
